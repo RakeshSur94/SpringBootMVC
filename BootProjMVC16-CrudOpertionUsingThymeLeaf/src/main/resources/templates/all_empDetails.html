@@ -1,0 +1,56 @@
+<html xmlns:th="http://www.thymeleaf.org"/>
+<style>
+ table{
+            width: 100%;
+            
+            border-collapse: collapse;
+            background-color: aqua;
+            text-align: center;
+            
+        }
+        th,td{
+            border: 1px solid blue;
+            padding: 10px;
+
+        }
+        tr:nth-child(even){
+            background-color: brown;
+        }
+</style>
+<div th:if="${!result_emp.empty}">
+<h1 style="color: olive;text-align: center;">Employee Report</h1>
+<table>
+<tr>
+<th>empno</th><th>name</th><th>desg</th><th>sal</th><th>deptno</th><th>edit</th><th>Download</th>
+<tr th:each="emp:${result_emp}">
+<td><span th:text="${emp.empno}"/></td>
+<td><span th:text="${emp.ename}"/></td>
+<td><span th:text="${emp.job}"/></td>
+<td><span th:text="${emp.sal}"/></td>
+<td><span th:text="${emp.deptno}"/></td>
+<td><a th:href="@{/employee/edit_emp(no=${emp.empno})}">edit</a></td>
+<td><a th:href="@{/employee/delete_emp(no=${emp.empno})}" onclick="return confirm('Do You Realy Want to delete')">edit</a></td>
+
+</tr>
+</table>
+</div>
+<div th:if="${result_emp.empty}">
+<h2 style="color: black;text-align: center;">Employee Not Found</h2>
+</div>
+
+<center>
+<h1 style="color: red;text-align: center;" th:text="${update_emp}" />
+<a th:href="@{/employee/add_emp}">ADD NEW EMPLOYEE HERE</a>
+<a th:href="@{/employee/}" > Home</a>
+
+</center>
+
+
+
+
+
+
+
+
+
+

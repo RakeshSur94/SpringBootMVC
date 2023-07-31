@@ -1,0 +1,60 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+ table{
+            width: 100%;
+            
+            border-collapse: collapse;
+            background-color: aqua;
+            text-align: center;
+            
+        }
+        th,td{
+            border: 1px solid blue;
+            padding: 10px;
+
+        }
+        tr:nth-child(even){
+            background-color: brown;
+        }
+</style>
+
+    <table>
+        <thead>
+            <tr>
+                <th>empid</th>
+                <th>ename</th>
+                <th>job</th>
+                 <th>sal</th>
+                  <th>deptno</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="emp : ${empPageData.content}">
+                <td th:text="${emp.empno]}"></td>
+                <td th:text="${emp.ename}"></td>
+                <td th:text="${emp.job}"></td>
+                   <td th:text="${emp.sal}"></td>
+                      <td th:text="${emp.deptno}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="paginations">
+        <ul>
+            <li th:class="${currentPage == 0} ? disabled : ''">
+                <a th:href="@{/}?page=0">First</a>
+            </li>
+            <li th:class="${currentPage == 0} ? disabled : ''">
+                <a th:href="@{/(page=${currentPage - 1})}">&lt;</a>
+            </li>
+            <li th:class="${currentPage == totalPages - 1} ? disabled : ''">
+                <a th:href="@{/(page=${currentPage + 1})}">&gt;</a>
+            </li>
+            <li th:class="${currentPage == totalPages - 1} ? disabled : ''">
+                <a th:href="@{/(page=${totalPages - 1})}">Last</a>
+            </li>
+        </ul>
+    </div>
+
+
+
+
